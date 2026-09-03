@@ -1,0 +1,200 @@
+[Assignment Deliverables]
+
+1) GitHub Repository: "customer_support"
+
+customer_support/
+│
+├── main.py
+├── tickets.json
+├── requirements.txt
+└── README.md
+
+
+2) Required API Endpoints
+
+GET /tickets
+
+Description:
+Retrieve all support tickets.
+
+This endpoint should also support optional query parameters
+for filtering tickets.
+
+Examples:
+
+/tickets?status=open
+/tickets?priority=urgent
+/tickets?category=payment
+/tickets?customer_name=Ali
+
+Multiple filters should also work together:
+
+/tickets?category=payment&priority=urgent&status=open
+
+
+GET /tickets/{ticket_id}
+
+Description:
+Retrieve a single support ticket using its unique ticket ID.
+
+If the ticket does not exist, the API should return an
+appropriate 404 error response.
+
+
+POST /tickets
+
+Description:
+Create a new customer support ticket.
+
+The request should contain the customer's information and
+ticket details.
+
+The API should automatically generate:
+
+- Ticket ID
+- Ticket creation time
+- Initial ticket status
+
+The client should not provide these automatically generated
+values.
+
+
+GET /tickets/statistics
+
+Description:
+Return a summary of the support tickets.
+
+The response should include information such as:
+
+- Total number of tickets
+- Number of open tickets
+- Number of in-progress tickets
+- Number of resolved tickets
+- Number of closed tickets
+- Number of urgent tickets
+- Number of high-priority tickets
+
+All values must be calculated dynamically from tickets.json.
+
+
+GET /tickets/statistics/categories
+
+Description:
+Return the number of tickets for each ticket category.
+
+For example:
+
+{
+    "authentication": 5,
+    "payment": 8,
+    "technical": 10,
+    "account": 4,
+    "billing": 6,
+    "other": 2
+}
+
+These values must be calculated from the existing tickets.
+
+
+GET /tickets/high-priority
+
+Description:
+Retrieve all high-priority support tickets.
+
+This endpoint should return tickets where the priority is:
+
+- high
+- urgent
+
+
+GET /customers/{customer_name}/tickets
+
+Description:
+Retrieve all support tickets belonging to a specific customer.
+
+For example:
+
+/customers/Ali Khan/tickets
+
+should return all tickets created by Ali Khan.
+
+If the customer has no tickets, return an empty list.
+
+
+3) GET /tickets — Query Parameters
+
+The /tickets endpoint must support optional query parameters.
+
+Supported filters:
+
+- customer_name
+- status
+- priority
+- category
+
+Examples:
+
+/tickets?status=open
+
+Retrieve all open tickets.
+
+
+/tickets?priority=urgent
+
+Retrieve all urgent tickets.
+
+
+/tickets?category=payment
+
+Retrieve all payment-related tickets.
+
+
+/tickets?customer_name=Ali
+
+Retrieve tickets belonging to customers whose name
+matches "Ali".
+
+
+Multiple filters:
+
+/tickets?category=payment&priority=urgent&status=open
+
+This should return only tickets that satisfy ALL of the
+provided conditions.
+
+
+4) Important Requirements
+
+- Use FastAPI.
+- Use Pydantic for request validation.
+- Do not use a database.
+- Store data in tickets.json.
+- Use appropriate HTTP status codes.
+- Handle cases where a ticket does not exist.
+- Do not hardcode statistics.
+- Keep JSON file reading/writing separate from the API endpoints.
+- Test all endpoints using Swagger UI (/docs) or Postman.
+
+
+5) Bonus Challenges
+
+Optional:
+
+- Add pagination:
+  /tickets?page=1&limit=10
+
+- Add sorting:
+  /tickets?sort=priority
+
+- Add text search:
+  /tickets?search=login
+
+  Search inside both subject and description.
+
+- Add date filtering:
+  /tickets?created_after=2026-09-01
+
+- Combine all features:
+
+  /tickets?category=technical&priority=urgent&status=open
+  &sort=created_at&page=1&limit=10
