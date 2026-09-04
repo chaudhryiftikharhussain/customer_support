@@ -2,6 +2,16 @@
 
 FastAPI service for customer support tickets. Data is stored in `tickets.json` (no database).
 
+```
+customer_support/
+├── main.py
+├── schemas.py
+├── utils.py
+├── tickets.json
+├── requirements.txt
+└── README.md
+```
+
 ## Setup
 
 ```bash
@@ -13,7 +23,7 @@ pip install -r requirements.txt
 ## Run
 
 ```bash
-fastapi dev main1.py
+fastapi dev main.py
 ```
 
 - API: http://127.0.0.1:8000
