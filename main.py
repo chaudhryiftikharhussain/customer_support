@@ -1,3 +1,4 @@
+from collections import Counter
 from datetime import datetime
 
 from fastapi import FastAPI, status as http_status
@@ -8,7 +9,10 @@ from starlette.responses import JSONResponse
 from schemas import TicketInput, TicketPatchInput, TicketPutInput
 from utils import read_tickets_json_file, write_tickets_json_file
 
-from config.static_config import mount_static_files  # import static
+from fastapi.staticfiles import StaticFiles
+
+
+# from config.static_config import mount_static_files  # import static
 from config.templates_config import templates as project_templates  # import template
 
 
@@ -17,8 +21,10 @@ app = FastAPI(
     description="Customer support tickets stored in tickets.json.",
 )
 
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
 # Mount the static files
-mount_static_files(app)
+# mount_static_files(app)
 
 
 def file_error_response(message):
@@ -36,12 +42,40 @@ def file_error_response(message):
 async def dashboard(request: Request):
     print("test_html_page api is called")
     # json read krain tickets.json or table me show kr dein
-    tickets = []
+
+    file_read_ok, tickets, message = read_tickets_json_file()
+    ticket_categories = [ticket['category'] for ticket in tickets]
+
+    tickets_count = Counter(ticket_categories)
+    print(tickets_count)
+    print(tickets_count.values())
+    total_tickets = [count for count in tickets_count.values()]
+    total_tickets_count = 0
+    for i in total_tickets:
+        total_tickets_count += i
+    print(total_tickets_count)
+
+    percentage_wise_categories = []
+    for t in tickets_count.keys():
+        print(tickets_count.get(t))
+        p = tickets_count.get(t) * 100 / total_tickets_count
+        percentage_wise_categories.append(
+            {
+                "category_name": t,
+                "count": tickets_count.get(t),
+                "percentage": p,
+                "color_class": "bg-primary" if p < 20 else "bg-danger"
+            }
+        )
+    print("--------")
+    print(percentage_wise_categories)
     return project_templates.TemplateResponse(
         request=request,
         name="dashboard.html",
         context={
-            "ticket": tickets
+            "ticket": tickets,
+            "percentage_wise_categories": percentage_wise_categories,
+            "total_tickets_count": total_tickets_count,
         },
     )
 
