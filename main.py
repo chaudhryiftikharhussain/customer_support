@@ -15,7 +15,7 @@ from fastapi.staticfiles import StaticFiles
 # from config.static_config import mount_static_files  # import static
 from config.templates_config import templates as project_templates  # import template
 
-
+from config.logging_config import logger as app_logger
 app = FastAPI(
     title="Customer Support API",
     description="Customer support tickets stored in tickets.json.",
@@ -96,10 +96,11 @@ def get_tickets(
     page: int | None = None,
     limit: int | None = None,
 ):
-    print("/tickets api is called")
+    # print("/tickets api is called")
+    app_logger.info("/tickets api is called")
     file_read_ok, tickets, message = read_tickets_json_file()
     if not file_read_ok:
-        print("file read not ok")
+        app_logger.error("file read not ok")
         return file_error_response(message)
 
     filtered_tickets = tickets
@@ -161,7 +162,7 @@ def get_tickets(
         start = (page - 1) * limit
         filtered_tickets = filtered_tickets[start:start + limit]
 
-    print("now returning tickets")
+    app_logger.info("now returning tickets")
     return JSONResponse(
         status_code=http_status.HTTP_200_OK,
         content={

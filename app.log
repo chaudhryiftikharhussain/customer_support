@@ -1,0 +1,54 @@
+2026-09-07 13:47:18,016 - INFO - fastapi_app - /tickets api is called
+2026-09-07 13:48:14,464 - INFO - fastapi_app - /tickets api is called
+2026-09-07 13:55:51 - INFO - customer_support_app - /tickets api is called
+dsvwev - INFO - customer_support_app - /tickets api is called
+2026-09-07 14:06:51 - INFO - customer_support_app - /tickets api is called
+2026-09-07 14:06:51 - INFO - customer_support_app - file read ok
+2026-09-07 14:06:51 - INFO - customer_support_app - now returning tickets
+2026-09-07 14:08:11 - INFO - customer_support_app - /tickets api is called
+2026-09-07 14:08:11 - ERROR - customer_support_app - file not found error
+2026-09-07 14:08:11 - ERROR - customer_support_app - file read not ok
+2026-09-07 14:10:07 - INFO - customer_support_app - /tickets api is called
+2026-09-07 14:11:38 - INFO - customer_support_app - /tickets api is called
+2026-09-07 14:11:38 - ERROR - customer_support_app - file not found error
+2026-09-07 14:11:38 - ERROR - customer_support_app - file read not ok
+2026-09-07 14:12:41 - INFO - customer_support_app - /tickets api is called
+2026-09-07 14:12:41 - ERROR - customer_support_app - file not found error [Errno 2] No such file or directory: 'sdfghj.json'
+2026-09-07 14:12:41 - ERROR - customer_support_app - file read not ok
+2026-09-07 14:15:22 - INFO - customer_support_app - /tickets api is called
+2026-09-07 14:15:22 - ERROR - customer_support_app - file not found error [Errno 2] No such file or directory: 'sdfghj.json'
+Traceback (most recent call last):
+  File "C:\Users\Dream Laptops\PycharmProjects\customer_support\utils.py", line 7, in read_tickets_json_file
+    with open("sdfghj.json", "r", encoding="utf-8") as file:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'sdfghj.json'
+2026-09-07 14:15:22 - ERROR - customer_support_app - file read not ok
+2026-09-07 14:21:55 - INFO - customer_support_app - /tickets api is called
+2026-09-07 14:21:55 - ERROR - customer_support_app - file not found error [Errno 2] No such file or directory: 'sdfghj.json'
+Traceback (most recent call last):
+  File "C:\Users\Dream Laptops\PycharmProjects\customer_support\utils.py", line 7, in read_tickets_json_file
+    with open("sdfghj.json", "r", encoding="utf-8") as file:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'sdfghj.json'
+2026-09-07 14:21:55 - ERROR - customer_support_app - file read not ok
+2026-09-07 14:21:55 - INFO - uvicorn.access - 127.0.0.1:65297 - "GET /tickets HTTP/1.1" 404
+2026-09-07 14:24:01 - INFO - uvicorn.access - 127.0.0.1:57805 - "GET / HTTP/1.1" 404
+2026-09-07 14:24:02 - INFO - uvicorn.access - 127.0.0.1:57805 - "GET / HTTP/1.1" 404
+2026-09-07 14:24:05 - INFO - uvicorn.access - 127.0.0.1:57805 - "GET /docs HTTP/1.1" 200
+2026-09-07 14:24:05 - INFO - uvicorn.access - 127.0.0.1:57805 - "GET /openapi.json HTTP/1.1" 200
+2026-09-07 14:25:19 - ERROR - customer_support_app - file not found error [Errno 2] No such file or directory: 'sdfghj.json'
+Traceback (most recent call last):
+  File "C:\Users\Dream Laptops\PycharmProjects\customer_support\utils.py", line 7, in read_tickets_json_file
+    with open("sdfghj.json", "r", encoding="utf-8") as file:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'sdfghj.json'
+2026-09-07 14:25:19 - INFO - uvicorn.access - 127.0.0.1:55619 - "GET /dashboard HTTP/1.1" 500
+2026-09-07 14:25:20 - ERROR - customer_support_app - file not found error [Errno 2] No such file or directory: 'sdfghj.json'
+Traceback (most recent call last):
+  File "C:\Users\Dream Laptops\PycharmProjects\customer_support\utils.py", line 7, in read_tickets_json_file
+    with open("sdfghj.json", "r", encoding="utf-8") as file:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'sdfghj.json'
+2026-09-07 14:25:20 - INFO - uvicorn.access - 127.0.0.1:58082 - "GET /dashboard HTTP/1.1" 500
+2026-09-07 14:25:39 - INFO - customer_support_app - file read ok
+2026-09-07 14:25:39 - INFO - uvicorn.access - 127.0.0.1:57303 - "GET /dashboard HTTP/1.1" 200
