@@ -1,7 +1,8 @@
+import time
 from collections import Counter
 from datetime import datetime
 
-from fastapi import FastAPI, status as http_status
+from fastapi import FastAPI, status as http_status, BackgroundTasks
 
 from starlette.requests import Request
 from starlette.responses import JSONResponse
@@ -79,6 +80,21 @@ async def dashboard(request: Request):
         },
     )
 
+def assign_agent(agent_name: str):
+    time.sleep(6)
+    app_logger.info("assigning agent to the ticket")
+    time.sleep(6)
+    app_logger.info("assigned agent to the ticket")
+    time.sleep(6)
+    app_logger.info("assigned agent to the ticket V2")
+
+
+
+def analyse_ticket_description():
+    pass
+
+def do_something_else():
+    pass
 
 @app.get(
     "/tickets",
@@ -86,15 +102,16 @@ async def dashboard(request: Request):
     summary="Retrieve all support tickets",
 )
 def get_tickets(
-    status: str | None = None,
-    priority: str | None = None,
-    category: str | None = None,
-    customer_name: str | None = None,
-    search: str | None = None,
-    created_after: str | None = None,
-    sort: str | None = None,
-    page: int | None = None,
-    limit: int | None = None,
+        background_tasks: BackgroundTasks,
+        status: str | None = None,
+        priority: str | None = None,
+        category: str | None = None,
+        customer_name: str | None = None,
+        search: str | None = None,
+        created_after: str | None = None,
+        sort: str | None = None,
+        page: int | None = None,
+        limit: int | None = None,
 ):
     # print("/tickets api is called")
     app_logger.info("/tickets api is called")
@@ -163,6 +180,10 @@ def get_tickets(
         filtered_tickets = filtered_tickets[start:start + limit]
 
     app_logger.info("now returning tickets")
+
+    background_tasks.add_task(assign_agent, agent_name="Iftikhar")
+
+
     return JSONResponse(
         status_code=http_status.HTTP_200_OK,
         content={
